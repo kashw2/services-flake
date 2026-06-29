@@ -65,7 +65,7 @@ in
               execFlags = builtins.concatStringsSep " \\\n" ([
                 "--config.file=${prometheusConfig}"
                 "--storage.tsdb.path=${config.dataDir}"
-                "--web.listen-address=${config.listenAddress}:${builtins.toString config.port}"
+                "--web.listen-address=${config.listenAddress}:${toString config.port}"
               ] ++ config.extraFlags);
 
               startScript = pkgs.writeShellApplication {

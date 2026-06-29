@@ -32,7 +32,7 @@ To change the database to `postgres`, we can use the following config:
     enable = true;
     extraConf.database = with config.services.postgres.pg1; {
       type = "postgres";
-      host = "${listen_addresses}:${builtins.toString port}";
+      host = "${listen_addresses}:${toString port}";
       name = "postgres"; # database name
     };
   };

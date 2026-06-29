@@ -75,7 +75,7 @@ in
                 text = ''
                   ${setupStateDirs}
 
-                  ${lib.getExe config.package} serve --host ${config.host} --port ${builtins.toString config.port}
+                  ${lib.getExe config.package} serve --host ${config.host} --port ${toString config.port}
                 '';
               };
               readiness_probe = {

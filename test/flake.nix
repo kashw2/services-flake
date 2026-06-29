@@ -20,7 +20,7 @@
               let
                 # Derive name from filename
                 name = lib.pipe mod [
-                  builtins.baseNameOf
+                  baseNameOf
                   (builtins.match "(.*)_test.nix")
                   builtins.head
                 ];
@@ -40,7 +40,7 @@
                 };
               };
           in
-          builtins.listToAttrs (builtins.map mkPackageFor ([
+          builtins.listToAttrs (map mkPackageFor ([
             "${inputs.services-flake}/nix/services/apache-kafka-kraft_test.nix"
             "${inputs.services-flake}/nix/services/azurite_test.nix"
             "${inputs.services-flake}/nix/services/chromadb_test.nix"

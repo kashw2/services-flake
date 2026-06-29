@@ -20,8 +20,8 @@
       command = pkgs.writeShellApplication {
         runtimeInputs = [ cfg.package pkgs.curl pkgs.gnugrep ];
         text = ''
-          curl -sS ${cfg.listenAddress}:${builtins.toString cfg.port}/-/healthy
-          curl -s -o /dev/null -w "%{http_code}" ${cfg.listenAddress}:${builtins.toString cfg.port}/metrics
+          curl -sS ${cfg.listenAddress}:${toString cfg.port}/-/healthy
+          curl -s -o /dev/null -w "%{http_code}" ${cfg.listenAddress}:${toString cfg.port}/metrics
         '';
         name = "prometheus-test";
       };

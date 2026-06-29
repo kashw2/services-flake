@@ -99,12 +99,12 @@ in
             "${name}-init" =
               let
                 # https://github.com/ClickHouse/ClickHouse/issues/4491
-                setupInitialSchema = schema: '' < ${schema} tr -s '\r\n' ' ' | clickhouse-client -mn --port ${builtins.toString config.port}; '';
+                setupInitialSchema = schema: '' < ${schema} tr -s '\r\n' ' ' | clickhouse-client -mn --port ${toString config.port}; '';
                 setupInitialDatabases =
                   lib.concatMapStrings
                     (database: ''
                       echo "Creating database: ${database.name}"
-                      clickhouse-client --port ${builtins.toString config.port} --query "CREATE DATABASE iF NOT EXISTS ${database.name}"
+                      clickhouse-client --port ${toString config.port} --query "CREATE DATABASE iF NOT EXISTS ${database.name}"
                       echo "Database successfully created: ${database.name}"
                       ${lib.optionalString (database.schemas != null)
                         (lib.concatMapStrings (schema: setupInitialSchema schema) database.schemas)}
@@ -152,7 +152,7 @@ in
                 command = startScript;
 
                 readiness_probe = {
-                  exec.command = ''${config.package}/bin/clickhouse-client --query "SELECT 1" --port ${builtins.toString config.port}'';
+                  exec.command = ''${config.package}/bin/clickhouse-client --query "SELECT 1" --port ${toString config.port}'';
                   initial_delay_seconds = 2;
                   period_seconds = 10;
                   timeout_seconds = 4;

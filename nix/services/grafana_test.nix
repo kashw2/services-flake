@@ -77,7 +77,7 @@ in
           ''
             ADMIN=${cfg.extraConf.security.admin_user}
             PASSWORD=${cfg.extraConf.security.admin_password}
-            ROOT_URL="${cfg.protocol}://${cfg.domain}:${builtins.toString cfg.http_port}";
+            ROOT_URL="${cfg.protocol}://${cfg.domain}:${toString cfg.http_port}";
             # The admin user can authenticate against the running service.
             curl -sSfN -u $ADMIN:$PASSWORD $ROOT_URL/api/org/users -i
             curl -sSfN -u $ADMIN:$PASSWORD $ROOT_URL/api/org/users | grep admin\@localhost

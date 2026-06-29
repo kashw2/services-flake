@@ -28,7 +28,7 @@ To add tempo as a datasource to #[[grafana]], we can use the following config:
       name = "Tempo";
       type = "tempo";
       access = "proxy";
-      url = "http://${httpAddress}:${builtins.toString httpPort}";
+      url = "http://${httpAddress}:${toString httpPort}";
     }];
   };
   settings.processes."gf1".depends_on."tp1".condition = "process_healthy";

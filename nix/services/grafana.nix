@@ -140,7 +140,7 @@ in
                 mkdir -p $out/plugins
               '';
             };
-            declarativePlugins = pkgs.linkFarm "grafana-plugins" (builtins.map (pkg: { name = pkg.pname; path = pkg; }) config.declarativePlugins);
+            declarativePlugins = pkgs.linkFarm "grafana-plugins" (map (pkg: { name = pkg.pname; path = pkg; }) config.declarativePlugins);
             startScript = pkgs.writeShellApplication {
               name = "start-grafana";
               runtimeInputs =

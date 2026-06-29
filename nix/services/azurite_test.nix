@@ -25,9 +25,9 @@ in
         pkgs.gnugrep
       ];
       text = ''
-        curl -s -o /dev/null -w "%{http_code}" ${listenAddress}:${builtins.toString blobPort} | grep '[2-4]'
-        curl -s -o /dev/null -w "%{http_code}" ${listenAddress}:${builtins.toString tablePort} | grep '[2-4]'
-        curl -s -o /dev/null -w "%{http_code}" ${listenAddress}:${builtins.toString queuePort} | grep '[2-4]'
+        curl -s -o /dev/null -w "%{http_code}" ${listenAddress}:${toString blobPort} | grep '[2-4]'
+        curl -s -o /dev/null -w "%{http_code}" ${listenAddress}:${toString tablePort} | grep '[2-4]'
+        curl -s -o /dev/null -w "%{http_code}" ${listenAddress}:${toString queuePort} | grep '[2-4]'
       '';
     };
     depends_on."azr1".condition = "process_healthy";

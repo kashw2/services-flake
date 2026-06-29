@@ -67,12 +67,12 @@ in
         let
           mkNodeProcess = nodeName: cfg:
             let
-              port = builtins.toString cfg.port;
+              port = toString cfg.port;
               redisConfig = pkgs.writeText "redis.conf" ''
                 port ${port}
                 cluster-enabled yes
                 cluster-config-file nodes-${port}.conf
-                cluster-node-timeout ${builtins.toString config.timeout}
+                cluster-node-timeout ${toString config.timeout}
                 appendonly yes
                 appendfilename "appendonly-${port}.aof"
                 dbfilename "dump-${port}.rdb"
@@ -116,7 +116,7 @@ in
                 max_restarts = 5;
               };
             };
-          hosts = lib.mapAttrsToList (_: cfg: "${config.bind}:${builtins.toString cfg.port}") config.nodes;
+          hosts = lib.mapAttrsToList (_: cfg: "${config.bind}:${toString cfg.port}") config.nodes;
           clusterCreateScript = pkgs.writeShellApplication {
             name = "redis-cluster-create";
             text =
@@ -125,12 +125,12 @@ in
               in
 
               ''
-                if ${config.package}/bin/redis-cli --cluster check ${config.bind}:${builtins.toString primaryNodePort}; then
+                if ${config.package}/bin/redis-cli --cluster check ${config.bind}:${toString primaryNodePort}; then
                   echo
                   echo
                   echo "redis-cluster is already created; Skipping initialization"
                 else
-                  ${config.package}/bin/redis-cli --cluster create ${lib.concatStringsSep " " hosts} --cluster-replicas ${builtins.toString config.replicas} --cluster-yes
+                  ${config.package}/bin/redis-cli --cluster create ${lib.concatStringsSep " " hosts} --cluster-replicas ${toString config.replicas} --cluster-yes
                 fi
               '';
           };

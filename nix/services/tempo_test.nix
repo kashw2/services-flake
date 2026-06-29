@@ -15,7 +15,7 @@
         runtimeInputs = [ cfg.package pkgs.gnugrep pkgs.curl pkgs.uutils-coreutils-noprefix ];
         text =
           ''
-            ROOT_URL="http://${cfg.httpAddress}:${builtins.toString cfg.httpPort}";
+            ROOT_URL="http://${cfg.httpAddress}:${toString cfg.httpPort}";
             curl -sSfN $ROOT_URL/status/version | grep "tempo, version"
           '';
         name = "tempo-test";

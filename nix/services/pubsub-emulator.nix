@@ -49,7 +49,7 @@ in
                 text = ''
                   mkdir -p "${config.dataDir}"
                   export JAVA_HOME=${config.jre}
-                  exec gcloud beta emulators pubsub start --project ${config.project} --data-dir ${config.dataDir} --host-port ${config.host}:${builtins.toString config.port};
+                  exec gcloud beta emulators pubsub start --project ${config.project} --data-dir ${config.dataDir} --host-port ${config.host}:${toString config.port};
                 '';
               };
               availability = {

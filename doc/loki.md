@@ -28,7 +28,7 @@ To add loki as a datasource to #[[grafana]], we can use the following config:
       name = "Loki";
       type = "loki";
       access = "proxy";
-      url = "http://${httpAddress}:${builtins.toString httpPort}";
+      url = "http://${httpAddress}:${toString httpPort}";
     }];
   };
   settings.processes."gf1".depends_on."tp1".condition = "process_healthy";

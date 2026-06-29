@@ -14,7 +14,7 @@
           runtimeInputs = [ pkgs.curl ];
           text =
             ''
-              [ "$(curl -sS http://${testConfig.host}:${builtins.toString testConfig.port})" = "Ok" ]
+              [ "$(curl -sS http://${testConfig.host}:${toString testConfig.port})" = "Ok" ]
             '';
           name = "pubsub-emulator-test";
         };

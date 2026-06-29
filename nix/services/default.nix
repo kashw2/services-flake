@@ -2,7 +2,7 @@ let
   inherit (import ../lib.nix) multiService;
 in
 {
-  imports = (builtins.map multiService [
+  imports = (map multiService [
     ./apache-kafka.nix
     ./azurite.nix
     ./clickhouse

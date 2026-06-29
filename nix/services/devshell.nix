@@ -40,7 +40,7 @@ in
         (lib.mapAttrsToList (service: instances:
           map
             (instance:
-              lib.attrByPath ([ service instance "package" ]) (builtins.throw "${service}.${instance} doesn't define a `package` option") config.services)
+              lib.attrByPath ([ service instance "package" ]) (throw "${service}.${instance} doesn't define a `package` option") config.services)
             instances))
 
         lib.flatten

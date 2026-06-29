@@ -22,7 +22,7 @@ let
       include ${config.defaultMimeTypes};
 
       server {
-        listen ${builtins.toString config.port};
+        listen ${toString config.port};
       }
       ${config.httpConfig}
     }

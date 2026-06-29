@@ -66,7 +66,7 @@ in
                 port ${toString config.port}
                 ${lib.optionalString (config.bind != null) "bind ${config.bind}"}
                 ${lib.optionalString (config.unixSocket != null) "unixsocket ${config.unixSocket}"}
-                ${lib.optionalString (config.unixSocket != null) "unixsocketperm ${builtins.toString config.unixSocketPerm}"}
+                ${lib.optionalString (config.unixSocket != null) "unixsocketperm ${toString config.unixSocketPerm}"}
                 ${config.extraConfig}
               '';
 

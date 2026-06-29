@@ -15,7 +15,7 @@ in
           if builtins.hasAttr "withPackages" postgresPkg
           then postgresPkg.withPackages config.extensions
           else
-            builtins.throw ''
+            throw ''
               Cannot add extensions to the PostgreSQL package.
               `services.postgres.package` is missing the `withPackages` attribute. Did you already add extensions to the package?
             ''
@@ -38,7 +38,7 @@ in
 
         The available extensions are:
 
-        ${lib.concatLines (builtins.map (x: "- " + x) (builtins.attrNames pkgs.postgresql.pkgs))}
+        ${lib.concatLines (map (x: "- " + x) (builtins.attrNames pkgs.postgresql.pkgs))}
       '';
     };
 
@@ -56,7 +56,7 @@ in
     connectionURI = lib.mkOption {
       type = lib.types.functionTo lib.types.str;
       readOnly = true;
-      default = { dbName, ... }: "postgres://${config.listen_addresses}:${builtins.toString config.port}/${dbName}";
+      default = { dbName, ... }: "postgres://${config.listen_addresses}:${toString config.port}/${dbName}";
       description = ''
         A function that accepts an attrset overriding the connection parameters
         and returns the [postgres connection URI](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING-URIS)
